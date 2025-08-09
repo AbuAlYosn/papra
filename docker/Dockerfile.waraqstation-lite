@@ -1,0 +1,122 @@
+# WaraqStation Lite - Lightweight Arabic Document Management Platform
+# محطة إدارة الوثائق العربية - الإصدار المخفف
+
+# Base stage with minimal dependencies
+FROM node:22-alpine AS base
+
+# Install only essential dependencies for Arabic text processing
+RUN apk add --no-cache \
+    # Essential Arabic fonts (minimal set)
+    font-noto-arabic \
+    font-noto-emoji \
+    # OCR and image processing (minimal)
+    tesseract-ocr \
+    tesseract-ocr-data-ara \
+    tesseract-ocr-data-eng \
+    imagemagick \
+    poppler-utils \
+    # System utilities
+    curl \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/cache/apk/*
+
+# Configure environment for builds
+ENV npm_config_python=/usr/bin/python3
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN npm install -g corepack@latest
+RUN corepack enable
+RUN corepack prepare pnpm@10.12.3 --activate
+
+# Build stage
+FROM base AS build
+
+WORKDIR /app
+
+COPY pnpm-lock.yaml ./
+COPY pnpm-workspace.yaml ./
+COPY apps/papra-client/package.json apps/papra-client/package.json
+COPY apps/papra-server/package.json apps/papra-server/package.json
+COPY packages/webhooks/package.json packages/webhooks/package.json
+COPY packages/lecture/package.json packages/lecture/package.json
+
+# Install dependencies (exclude email-related packages)
+RUN pnpm install --frozen-lockfile --ignore-scripts
+
+COPY . .
+
+# Build with Arabic locale support and remove email features
+RUN pnpm --filter "@waraqstation/app-client..." run build && \
+    pnpm --filter "@waraqstation/app-server..." run build
+
+RUN pnpm deploy --filter=@waraqstation/app-server --legacy --prod /prod/waraqstation-server
+
+# Final lightweight stage
+FROM node:22-alpine
+
+# Install only runtime dependencies
+RUN apk add --no-cache \
+    font-noto-arabic \
+    tesseract-ocr \
+    tesseract-ocr-data-ara \
+    tesseract-ocr-data-eng \
+    imagemagick \
+    curl \
+    && rm -rf /var/cache/apk/*
+
+WORKDIR /app
+
+COPY --from=build /prod/waraqstation-server ./
+COPY --from=build /app/apps/papra-client/dist ./public
+
+# Create necessary directories with minimal permissions
+RUN mkdir -p ./app-data/db ./app-data/documents ./temp && \
+    chmod 755 ./app-data ./temp
+
+EXPOSE 1221
+
+# Environment variables for WaraqStation Lite
+ENV NODE_ENV=production
+ENV SERVER_SERVE_PUBLIC_DIR=true
+ENV DATABASE_URL=file:./app-data/db/waraqstation.sqlite
+ENV DOCUMENT_STORAGE_FILESYSTEM_ROOT=./app-data/documents
+ENV PAPRA_CONFIG_DIR=./app-data
+ENV CLIENT_BASE_URL=http://localhost:1221
+
+# Disable email features
+ENV EMAILS_DRY_RUN=true
+ENV DISABLE_EMAIL_FEATURES=true
+ENV SMTP_ENABLED=false
+
+# Arabic OCR configuration (minimal)
+ENV TESSDATA_PREFIX=/usr/share/tessdata
+ENV OMP_THREAD_LIMIT=1
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:1221/api/health || exit 1
+
+# Create a minimal startup script
+RUN echo '#!/bin/sh\n\
+echo "🚀 Starting WaraqStation Lite"\n\
+echo "📁 Arabic Document Management (Offline Mode)"\n\
+echo "🔧 Initializing database..."\n\
+pnpm migrate:up:prod\n\
+echo "✅ Database ready"\n\
+echo "🌐 Starting server on port 1221"\n\
+echo "📚 Access your WaraqStation at: http://localhost:1221"\n\
+pnpm start' > /app/start-waraqstation.sh && \
+    chmod +x /app/start-waraqstation.sh
+
+CMD ["/app/start-waraqstation.sh"]
+
+# Metadata
+LABEL maintainer="WaraqStation Team"
+LABEL description="WaraqStation Lite - Lightweight Arabic Document Management"
+LABEL version="1.0.0"
+LABEL features="offline,arabic-ocr,lightweight"
+LABEL size="lightweight"

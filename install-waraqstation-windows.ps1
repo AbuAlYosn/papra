@@ -113,11 +113,16 @@ function Install-WaraqStation {
     Write-Message "Checking for WaraqStation Docker image..." "جاري فحص صورة WaraqStation..."
     $imageExists = docker image inspect waraqstation:latest 2>$null
     if ($LASTEXITCODE -ne 0) {
-        # Try to build from Dockerfile if available
-        $dockerfilePath = "docker\Dockerfile.waraqstation"
-        if (Test-Path $dockerfilePath) {
+        # Try to build from Dockerfile if available (prefer lite version)
+        $dockerfileLite = "docker\Dockerfile.waraqstation-lite"
+        $dockerfileFull = "docker\Dockerfile.waraqstation"
+        
+        if (Test-Path $dockerfileLite) {
+            Write-Message "Building WaraqStation Lite from source..." "جاري بناء WaraqStation المخفف من المصدر..."
+            docker build -t waraqstation:latest -f $dockerfileLite .
+        } elseif (Test-Path $dockerfileFull) {
             Write-Message "Building WaraqStation from source..." "جاري بناء WaraqStation من المصدر..."
-            docker build -t waraqstation:latest -f $dockerfilePath .
+            docker build -t waraqstation:latest -f $dockerfileFull .
             if ($LASTEXITCODE -ne 0) {
                 Write-Message "Failed to build WaraqStation image." "فشل في بناء صورة WaraqStation." "ERROR"
                 exit 1

@@ -10,7 +10,9 @@
     "docker:build:root": "docker build -t waraqstation -f docker/Dockerfile .",
     "docker:build:rootless": "docker build -t waraqstation-rootless -f docker/Dockerfile.rootless .",
     "docker:build:waraqstation": "docker build -t waraqstation:latest -f docker/Dockerfile.waraqstation .",
+    "docker:build:waraqstation-lite": "docker build -t waraqstation:lite -f docker/Dockerfile.waraqstation-lite .",
     "docker:run:waraqstation": "docker run -d --name waraqstation -p 1221:1221 -v waraqstation-data:/app/app-data waraqstation:latest",
+    "docker:run:waraqstation-lite": "docker run -d --name waraqstation-lite -p 1221:1221 -v waraqstation-data:/app/app-data waraqstation:lite",
     "version": "changeset version && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
     "build:packages": "pnpm --filter './packages/*' --stream build"

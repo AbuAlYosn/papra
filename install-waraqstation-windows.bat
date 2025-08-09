@@ -82,11 +82,11 @@ echo.
 echo [INFO] Checking for WaraqStation Docker image...
 docker image inspect waraqstation:latest >nul 2>&1
 if %errorlevel% neq 0 (
-    :: Check if Dockerfile.waraqstation exists in current directory
-    if exist "docker\Dockerfile.waraqstation" (
-        echo [INFO] Building WaraqStation from source...
-        echo [معلومات] جاري بناء WaraqStation من المصدر...
-        docker build -t waraqstation:latest -f docker/Dockerfile.waraqstation .
+    :: Check if Dockerfile.waraqstation-lite exists in current directory
+    if exist "docker\Dockerfile.waraqstation-lite" (
+        echo [INFO] Building WaraqStation Lite from source...
+        echo [معلومات] جاري بناء WaraqStation المخفف من المصدر...
+        docker build -t waraqstation:latest -f docker/Dockerfile.waraqstation-lite .
         if %errorlevel% neq 0 (
             echo [ERROR] Failed to build WaraqStation image.
             echo [خطأ] فشل في بناء صورة WaraqStation.
