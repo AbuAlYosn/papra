@@ -1,0 +1,19 @@
+/* WaraqStation RTL tweaks */
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+  font-family: "Noto Naskh Arabic", "Noto Sans Arabic", "Amiri", "DejaVu Sans", sans-serif;
+}
+
+/* Tables and lists */
+html[dir="rtl"] .mat-table,
+html[dir="rtl"] table,
+html[dir="rtl"] .list {
+  direction: rtl;
+}
+
+/* Angular Material containers */
+html[dir="rtl"] .mat-drawer-container,
+html[dir="rtl"] .mat-sidenav-container {
+  direction: rtl;
+}

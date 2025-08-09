@@ -1,0 +1,101 @@
+name: waraqstation
+
+networks:
+  waraq_net:
+    internal: true
+
+volumes:
+  redis_data:
+  postgres_data:
+  paperless_data:
+  paperless_media:
+  paperless_export:
+  paperless_consume:
+  paperless_trash:
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: waraqstation-redis
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+    restart: unless-stopped
+    networks: [waraq_net]
+    volumes:
+      - redis_data:/data
+
+  db:
+    image: postgres:16-alpine
+    container_name: waraqstation-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: paperless
+      TZ: Asia/Riyadh
+    networks: [waraq_net]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  gotenberg:
+    image: gotenberg/gotenberg:8
+    container_name: waraqstation-gotenberg
+    restart: unless-stopped
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
+    networks: [waraq_net]
+
+  tika:
+    image: ghcr.io/paperless-ngx/tika:latest
+    container_name: waraqstation-tika
+    restart: unless-stopped
+    networks: [waraq_net]
+
+  paperless:
+    build: ./paperless
+    image: waraqstation/paperless-ngx:ara
+    container_name: waraqstation-paperless
+    depends_on:
+      - db
+      - redis
+      - tika
+      - gotenberg
+    restart: unless-stopped
+    environment:
+      PAPERLESS_REDIS: redis://waraqstation-redis:6379
+      PAPERLESS_DBENGINE: postgresql
+      PAPERLESS_DBHOST: waraqstation-db
+      PAPERLESS_DBNAME: paperless
+      PAPERLESS_DBUSER: paperless
+      PAPERLESS_DBPASS: paperless
+      PAPERLESS_TIKA_ENABLED: "1"
+      PAPERLESS_TIKA_ENDPOINT: http://waraqstation-tika:9998
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://waraqstation-gotenberg:3000
+      PAPERLESS_OCR_LANGUAGES: "ara"
+      PAPERLESS_OCR_LANGUAGE: "ara"
+      PAPERLESS_TIME_ZONE: Asia/Riyadh
+      PAPERLESS_ADMIN_USER: admin
+      PAPERLESS_ADMIN_PASSWORD: admin123!
+      PAPERLESS_URL: http://localhost:7780
+      PAPERLESS_CSRF_TRUSTED_ORIGINS: http://localhost http://127.0.0.1
+    networks: [waraq_net]
+    volumes:
+      - paperless_data:/usr/src/paperless/data
+      - ./user-data/media:/usr/src/paperless/media
+      - ./user-data/export:/usr/src/paperless/export
+      - ./user-data/consume:/usr/src/paperless/consume
+      - ./user-data/trash:/usr/src/paperless/trash
+
+  nginx:
+    image: nginx:alpine
+    container_name: waraqstation-nginx
+    depends_on:
+      - paperless
+    restart: unless-stopped
+    ports:
+      - "7780:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/branding.css:/usr/share/nginx/html/branding.css:ro
+    networks: [waraq_net]
