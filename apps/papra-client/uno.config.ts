@@ -112,6 +112,23 @@ export default defineConfig({
       },
     },
   },
+  rules: [
+    // RTL Support Rules
+    ['rtl-flip', { transform: 'scaleX(-1)' }],
+    ['rtl-rotate-180', { transform: 'rotate(180deg)' }],
+    [/^ms-(\d+)$/, ([, d]) => ({ 'margin-inline-start': `${Number.parseInt(d) / 4}rem` })],
+    [/^me-(\d+)$/, ([, d]) => ({ 'margin-inline-end': `${Number.parseInt(d) / 4}rem` })],
+    [/^ps-(\d+)$/, ([, d]) => ({ 'padding-inline-start': `${Number.parseInt(d) / 4}rem` })],
+    [/^pe-(\d+)$/, ([, d]) => ({ 'padding-inline-end': `${Number.parseInt(d) / 4}rem` })],
+    ['text-start', { 'text-align': 'start' }],
+    ['text-end', { 'text-align': 'end' }],
+    ['float-start', { float: 'inline-start' }],
+    ['float-end', { float: 'inline-end' }],
+    ['border-s', { 'border-inline-start-width': '1px' }],
+    ['border-e', { 'border-inline-end-width': '1px' }],
+    ['rounded-s', { 'border-start-start-radius': '0.25rem', 'border-end-start-radius': '0.25rem' }],
+    ['rounded-e', { 'border-start-end-radius': '0.25rem', 'border-end-end-radius': '0.25rem' }],
+  ],
   safelist: [
     ...uniq([
       ...values(iconByFileType),

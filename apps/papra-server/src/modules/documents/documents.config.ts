@@ -15,7 +15,7 @@ export const documentsConfig = {
       stringCoercedOcrLanguagesSchema,
       ocrLanguagesSchema,
     ]),
-    default: ['eng'],
+    default: ['ara', 'eng'], // Default to Arabic and English for WaraqStation
     env: 'DOCUMENTS_OCR_LANGUAGES',
   },
 } as const satisfies ConfigDefinition;

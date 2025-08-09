@@ -1,14 +1,16 @@
 {
-  "name": "@papra/root",
-  "version": "0.3.0",
+  "name": "@waraqstation/root",
+  "version": "1.0.0",
   "packageManager": "pnpm@10.12.3",
-  "description": "Papra document management monorepo root",
-  "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
+  "description": "WaraqStation document management monorepo root - محطة إدارة الوثائق العربية",
+  "author": "WaraqStation Team",
   "license": "AGPL-3.0-or-later",
   "keywords": [],
   "scripts": {
-    "docker:build:root": "docker build -t papra -f docker/Dockerfile .",
-    "docker:build:rootless": "docker build -t papra-rootless -f docker/Dockerfile.rootless .",
+    "docker:build:root": "docker build -t waraqstation -f docker/Dockerfile .",
+    "docker:build:rootless": "docker build -t waraqstation-rootless -f docker/Dockerfile.rootless .",
+    "docker:build:waraqstation": "docker build -t waraqstation:latest -f docker/Dockerfile.waraqstation .",
+    "docker:run:waraqstation": "docker run -d --name waraqstation -p 1221:1221 -v waraqstation-data:/app/app-data waraqstation:latest",
     "version": "changeset version && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
     "build:packages": "pnpm --filter './packages/*' --stream build"

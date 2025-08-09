@@ -22,16 +22,16 @@ RUN pnpm install --frozen-lockfile --ignore-scripts
 
 COPY . .
 
-RUN pnpm --filter "@papra/app-client..." run build && \
-    pnpm --filter "@papra/app-server..." run build
+RUN pnpm --filter "@waraqstation/app-client..." run build && \
+    pnpm --filter "@waraqstation/app-server..." run build
 
-RUN pnpm deploy --filter=@papra/app-server --legacy --prod /prod/papra-server
+RUN pnpm deploy --filter=@waraqstation/app-server --legacy --prod /prod/waraqstation-server
 
 FROM base
 
 WORKDIR /app
 
-COPY --from=build /prod/papra-server ./
+COPY --from=build /prod/waraqstation-server ./
 COPY --from=build /app/apps/papra-client/dist ./public
 
 EXPOSE 1221

@@ -1,0 +1,279 @@
+# Authentication - المصادقة
+
+auth.request-password-reset.title: إعادة تعيين كلمة المرور
+auth.request-password-reset.description: أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور.
+auth.request-password-reset.requested: إذا كان يوجد حساب لهذا البريد الإلكتروني، فقد أرسلنا لك رسالة إلكترونية لإعادة تعيين كلمة المرور.
+auth.request-password-reset.back-to-login: العودة إلى تسجيل الدخول
+auth.request-password-reset.form.email.label: البريد الإلكتروني
+auth.request-password-reset.form.email.placeholder: 'مثال: ahmed@waraqstation.com'
+auth.request-password-reset.form.email.required: يرجى إدخال عنوان بريدك الإلكتروني
+auth.request-password-reset.form.email.invalid: عنوان البريد الإلكتروني هذا غير صحيح
+auth.request-password-reset.form.submit: طلب إعادة تعيين كلمة المرور
+
+auth.reset-password.title: إعادة تعيين كلمة المرور
+auth.reset-password.description: أدخل كلمة المرور الجديدة لإعادة تعيين كلمة المرور.
+auth.reset-password.reset: تم إعادة تعيين كلمة المرور.
+auth.reset-password.back-to-login: العودة إلى تسجيل الدخول
+auth.reset-password.form.new-password.label: كلمة المرور الجديدة
+auth.reset-password.form.new-password.placeholder: 'مثال: **********'
+auth.reset-password.form.new-password.required: يرجى إدخال كلمة المرور الجديدة
+auth.reset-password.form.new-password.min-length: يجب أن تتكون كلمة المرور من {{ minLength }} أحرف على الأقل
+auth.reset-password.form.new-password.max-length: يجب أن تتكون كلمة المرور من أقل من {{ maxLength }} حرف
+auth.reset-password.form.submit: إعادة تعيين كلمة المرور
+
+auth.email-provider.open: فتح {{ provider }}
+
+auth.login.title: تسجيل الدخول إلى WaraqStation
+auth.login.description: أدخل بريدك الإلكتروني أو استخدم تسجيل الدخول الاجتماعي للوصول إلى حساب WaraqStation الخاص بك.
+auth.login.login-with-provider: تسجيل الدخول باستخدام {{ provider }}
+auth.login.no-account: ليس لديك حساب؟
+auth.login.register: إنشاء حساب
+auth.login.form.email.label: البريد الإلكتروني
+auth.login.form.email.placeholder: 'مثال: ahmed@waraqstation.com'
+auth.login.form.email.required: يرجى إدخال عنوان بريدك الإلكتروني
+auth.login.form.email.invalid: عنوان البريد الإلكتروني هذا غير صحيح
+auth.login.form.password.label: كلمة المرور
+auth.login.form.password.placeholder: اختر كلمة مرور
+auth.login.form.password.required: يرجى إدخال كلمة المرور
+auth.login.form.remember-me.label: تذكرني
+auth.login.form.forgot-password.label: نسيت كلمة المرور؟
+auth.login.form.submit: تسجيل الدخول
+
+auth.register.title: إنشاء حساب في WaraqStation
+auth.register.description: أنشئ حساباً لبدء استخدام WaraqStation.
+auth.register.register-with-email: إنشاء حساب باستخدام البريد الإلكتروني
+auth.register.register-with-provider: إنشاء حساب باستخدام {{ provider }}
+auth.register.providers.google: جوجل
+auth.register.providers.github: جيت هاب
+auth.register.have-account: هل لديك حساب بالفعل؟
+auth.register.login: تسجيل الدخول
+auth.register.registration-disabled.title: إنشاء الحسابات معطل
+auth.register.registration-disabled.description: إنشاء الحسابات الجديدة معطل حالياً. يرجى الاتصال بالمسؤول للمساعدة.
+auth.register.form.name.label: الاسم الكامل
+auth.register.form.name.placeholder: 'مثال: أحمد محمد'
+auth.register.form.name.required: يرجى إدخال اسمك الكامل
+auth.register.form.name.min-length: يجب أن يتكون الاسم من حرفين على الأقل
+auth.register.form.name.max-length: يجب أن يتكون الاسم من أقل من {{ maxLength }} حرف
+auth.register.form.email.label: البريد الإلكتروني
+auth.register.form.email.placeholder: 'مثال: ahmed@waraqstation.com'
+auth.register.form.email.required: يرجى إدخال عنوان بريدك الإلكتروني
+auth.register.form.email.invalid: عنوان البريد الإلكتروني هذا غير صحيح
+auth.register.form.password.label: كلمة المرور
+auth.register.form.password.placeholder: اختر كلمة مرور قوية
+auth.register.form.password.required: يرجى إدخال كلمة مرور
+auth.register.form.password.min-length: يجب أن تتكون كلمة المرور من {{ minLength }} أحرف على الأقل
+auth.register.form.password.max-length: يجب أن تتكون كلمة المرور من أقل من {{ maxLength }} حرف
+auth.register.form.terms.prefix: من خلال إنشاء حساب، فإنك توافق على
+auth.register.form.terms.link: شروط الخدمة
+auth.register.form.submit: إنشاء حساب
+
+auth.verify-email.title: تحقق من بريدك الإلكتروني
+auth.verify-email.description: لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني. يرجى إدخال الرمز أدناه للتحقق من حسابك.
+auth.verify-email.verified: تم التحقق من بريدك الإلكتروني بنجاح.
+auth.verify-email.resend: إعادة إرسال رمز التحقق
+auth.verify-email.form.code.label: رمز التحقق
+auth.verify-email.form.code.placeholder: أدخل رمز التحقق المكون من 6 أرقام
+auth.verify-email.form.code.required: يرجى إدخال رمز التحقق
+auth.verify-email.form.code.invalid: رمز التحقق غير صحيح
+auth.verify-email.form.submit: تحقق من البريد الإلكتروني
+
+# Common - عام
+common.loading: جاري التحميل...
+common.save: حفظ
+common.cancel: إلغاء
+common.delete: حذف
+common.edit: تعديل
+common.create: إنشاء
+common.update: تحديث
+common.confirm: تأكيد
+common.close: إغلاق
+common.submit: إرسال
+common.search: بحث
+common.filter: تصفية
+common.sort: ترتيب
+common.upload: رفع
+common.download: تحميل
+common.preview: معاينة
+common.settings: الإعدادات
+common.help: مساعدة
+common.back: العودة
+common.next: التالي
+common.previous: السابق
+common.actions: الإجراءات
+common.name: الاسم
+common.description: الوصف
+common.date: التاريخ
+common.size: الحجم
+common.type: النوع
+common.status: الحالة
+common.tags: العلامات
+common.organization: المؤسسة
+common.user: المستخدم
+common.email: البريد الإلكتروني
+common.password: كلمة المرور
+common.required: مطلوب
+common.optional: اختياري
+common.yes: نعم
+common.no: لا
+common.none: لا يوجد
+common.all: الكل
+common.other: أخرى
+common.more: المزيد
+common.less: أقل
+common.show: إظهار
+common.hide: إخفاء
+common.expand: توسيع
+common.collapse: طي
+common.copy: نسخ
+common.copied: تم النسخ
+common.share: مشاركة
+common.export: تصدير
+common.import: استيراد
+common.refresh: تحديث
+common.retry: إعادة المحاولة
+common.or: أو
+common.and: و
+common.of: من
+common.in: في
+common.at: في
+common.by: بواسطة
+common.for: لـ
+common.with: مع
+common.without: بدون
+common.about: حول
+common.contact: اتصال
+common.support: الدعم
+common.documentation: التوثيق
+common.privacy: الخصوصية
+common.terms: الشروط
+common.license: الترخيص
+common.version: الإصدار
+
+# Navigation - التنقل
+nav.dashboard: لوحة التحكم
+nav.documents: الوثائق
+nav.organizations: المؤسسات
+nav.tags: العلامات
+nav.settings: الإعدادات
+nav.profile: الملف الشخصي
+nav.logout: تسجيل الخروج
+nav.login: تسجيل الدخول
+nav.register: إنشاء حساب
+
+# Documents - الوثائق
+documents.title: إدارة الوثائق
+documents.upload: رفع وثيقة
+documents.upload.description: اسحب الملفات هنا أو انقر للتصفح
+documents.upload.multiple: رفع عدة وثائق
+documents.upload.success: تم رفع الوثيقة بنجاح
+documents.upload.error: خطأ في رفع الوثيقة
+documents.search.placeholder: البحث في الوثائق...
+documents.filter.all: جميع الوثائق
+documents.filter.recent: الحديثة
+documents.filter.favorites: المفضلة
+documents.filter.shared: المشتركة
+documents.empty: لا توجد وثائق
+documents.empty.description: ابدأ برفع وثيقتك الأولى
+documents.empty.action: رفع وثيقة
+documents.delete.confirm: هل أنت متأكد من حذف هذه الوثيقة؟
+documents.delete.success: تم حذف الوثيقة بنجاح
+documents.rename: إعادة تسمية الوثيقة
+documents.rename.placeholder: اسم الوثيقة الجديد
+documents.preview.loading: جاري تحميل المعاينة...
+documents.preview.error: خطأ في تحميل المعاينة
+documents.download.success: تم تحميل الوثيقة بنجاح
+documents.share.title: مشاركة الوثيقة
+documents.share.copy-link: نسخ الرابط
+documents.share.public: عامة
+documents.share.private: خاصة
+documents.content-extraction: استخراج النص
+documents.content-extraction.description: استخراج النص من الصور والوثائق الممسوحة ضوئياً للبحث
+documents.ocr.processing: جاري معالجة النص...
+documents.ocr.completed: تم استخراج النص بنجاح
+documents.ocr.error: خطأ في استخراج النص
+documents.arabic.optimized: محسّن للنصوص العربية
+documents.scanned.support: دعم الوثائق الممسوحة ضوئياً
+
+# Organizations - المؤسسات
+organizations.title: المؤسسات
+organizations.create: إنشاء مؤسسة
+organizations.create.title: إنشاء مؤسسة جديدة
+organizations.create.description: أنشئ مؤسسة لإدارة الوثائق مع الفريق
+organizations.name.label: اسم المؤسسة
+organizations.name.placeholder: مثال: شركة الوثائق العربية
+organizations.description.label: وصف المؤسسة
+organizations.description.placeholder: وصف موجز للمؤسسة
+organizations.members: الأعضاء
+organizations.members.invite: دعوة عضو
+organizations.members.role.admin: مدير
+organizations.members.role.member: عضو
+organizations.members.role.viewer: مشاهد
+organizations.settings: إعدادات المؤسسة
+organizations.empty: لا توجد مؤسسات
+organizations.empty.description: أنشئ مؤسستك الأولى لبدء التعاون
+organizations.join: انضمام للمؤسسة
+organizations.leave: مغادرة المؤسسة
+organizations.delete: حذف المؤسسة
+
+# Settings - الإعدادات
+settings.title: الإعدادات
+settings.general: عام
+settings.account: الحساب
+settings.security: الأمان
+settings.notifications: الإشعارات
+settings.language: اللغة
+settings.theme: السمة
+settings.theme.light: فاتح
+settings.theme.dark: داكن
+settings.theme.system: النظام
+settings.profile.title: الملف الشخصي
+settings.profile.name: الاسم الكامل
+settings.profile.email: البريد الإلكتروني
+settings.profile.avatar: الصورة الشخصية
+settings.password.title: تغيير كلمة المرور
+settings.password.current: كلمة المرور الحالية
+settings.password.new: كلمة المرور الجديدة
+settings.password.confirm: تأكيد كلمة المرور الجديدة
+settings.sessions: الجلسات النشطة
+settings.sessions.current: الجلسة الحالية
+settings.sessions.revoke: إلغاء الجلسة
+settings.storage: التخزين
+settings.storage.used: المساحة المستخدمة
+settings.storage.available: المساحة المتاحة
+settings.backup: النسخ الاحتياطي
+settings.backup.export: تصدير البيانات
+settings.backup.import: استيراد البيانات
+
+# Errors - الأخطاء
+error.400: طلب غير صحيح
+error.401: غير مصرح
+error.403: محظور
+error.404: الصفحة غير موجودة
+error.500: خطأ في الخادم
+error.network: خطأ في الشبكة
+error.timeout: انتهت مهلة الاتصال
+error.general: حدث خطأ غير متوقع
+error.retry: يرجى المحاولة مرة أخرى
+error.contact-support: اتصل بالدعم الفني
+
+# Success Messages - رسائل النجاح
+success.saved: تم الحفظ بنجاح
+success.updated: تم التحديث بنجاح
+success.created: تم الإنشاء بنجاح
+success.deleted: تم الحذف بنجاح
+success.uploaded: تم الرفع بنجاح
+success.downloaded: تم التحميل بنجاح
+success.shared: تم المشاركة بنجاح
+success.copied: تم النسخ بنجاح
+
+# WaraqStation Specific - خاص بـ WaraqStation
+app.name: WaraqStation
+app.slogan: محطة إدارة الوثائق العربية
+app.description: منصة متخصصة لإدارة وأرشفة الوثائق العربية والممسوحة ضوئياً
+app.welcome: مرحباً بك في WaraqStation
+app.features.arabic-ocr: استخراج النص العربي المتقدم
+app.features.rtl-interface: واجهة محسّنة للعربية
+app.features.scanned-docs: معالجة الوثائق الممسوحة
+app.features.secure-storage: تخزين آمن ومحمي
+app.getting-started: البدء السريع
+app.documentation: دليل الاستخدام

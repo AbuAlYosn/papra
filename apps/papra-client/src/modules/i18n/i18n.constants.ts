@@ -1,4 +1,5 @@
 export const locales = [
+  { key: 'ar', name: 'العربية', rtl: true },
   { key: 'en', name: 'English' },
   { key: 'fr', name: 'Français' },
   { key: 'de', name: 'Deutsch' },

@@ -1,15 +1,15 @@
 {
-  "name": "@papra/app-client",
+  "name": "@waraqstation/app-client",
   "type": "module",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@10.12.3",
-  "description": "Papra frontend client",
-  "author": "Corentin Thomasset <corentinth@proton.me> (https://corentin.tech)",
+  "description": "WaraqStation frontend client - محطة إدارة الوثائق العربية",
+  "author": "WaraqStation Team",
   "license": "AGPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "https://github.com/papra-hq/papra"
+    "url": "https://github.com/waraqstation/waraqstation"
   },
   "engines": {
     "node": ">=22.0.0"
