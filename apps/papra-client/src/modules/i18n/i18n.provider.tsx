@@ -46,7 +46,14 @@ export const I18nProvider: ParentComponent = (props) => {
   const [dict] = createResource(getLocale, fetchDictionary);
 
   createEffect(() => {
-    document.documentElement.lang = getLocale();
+    const currentLocale = getLocale();
+    const localeConfig = locales.find(locale => locale.key === currentLocale);
+    
+    document.documentElement.lang = currentLocale;
+    document.documentElement.dir = localeConfig?.rtl ? 'rtl' : 'ltr';
+    
+    // Update CSS custom property for RTL support
+    document.documentElement.style.setProperty('--text-direction', localeConfig?.rtl ? 'rtl' : 'ltr');
   });
 
   return (
